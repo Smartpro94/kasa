@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/home.scss';
+import './home.scss';
 import background from '../assets/image_accueil.png';
 import data from '../data.json';
 

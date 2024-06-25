@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ficheLogement.scss';  
+import './ficheLogement.scss';
 
 const FicheLogement: React.FC = () => {
   return (
