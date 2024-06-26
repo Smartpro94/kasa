@@ -1,11 +1,15 @@
 import React from 'react';
 import './errorPage.scss';
+import { Link } from 'react-router-dom';
 
 const ErrorPage: React.FC = () => {
   return (
-    <div>
-      <h1>Bienvenue sur la page d'erreur</h1>
-      <p>Contenu de la page d'accueil...</p>
+    <div className="errorPage">
+      <h1>404</h1>
+      <p>Oups! La page que vous demandez n'existe pas.</p>
+      <Link to="/" className="header__nav__link link">
+        Retourner sur la page d’accueil
+      </Link>
     </div>
   );
 };
