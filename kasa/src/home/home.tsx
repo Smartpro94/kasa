@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './home.scss';
 import background from '../assets/image_accueil.png';
 import data from '../data.json';
@@ -26,13 +27,19 @@ const Home: React.FC = () => {
       </div>
       <div className="home__gallery">
         {cards.map((card) => (
-          <div
+          <Link
+            to={`/fiche-logement/${card.id}`}
             key={card.id}
-            className="card"
-            style={{ backgroundImage: `url(${card.cover})` }}
+            className="link"
           >
-            <p>{card.title}</p>
-          </div>
+            <div
+              key={card.id}
+              className="card"
+              style={{ backgroundImage: `url(${card.cover})` }}
+            >
+              <p>{card.title}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -13,8 +13,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/fiche-logement" element={<FicheLogement />} />
-          <Route path="*" element={<ErrorPage />} />{' '}
+          <Route path="/fiche-logement/:id" element={<FicheLogement />} />
+          {/*Route dynamique*/}
+          <Route path="*" element={<ErrorPage />} />
           {/* Route par défaut en cas de chemin inconnu */}
         </Routes>
       </Layout>

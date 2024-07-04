@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import './about.scss';
 import background from '../assets/about-image.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronUp,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 
 // Ajouter l'icône à la bibliothèque
-library.add(faChevronUp, faChevronDown);
+library.add(
+  faChevronUp,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faStar,
+  regularStar
+);
 
 const About: React.FC = () => {
-  const [openDropdowns, setOpenDropdowns] = useState<number[]>([]); // Tableau d'indices des dropdowns ouverts
-
-  const toggleDropdown = (index: number) => {
-    if (openDropdowns.includes(index)) {
-      // Dropdown déjà ouvert, le fermer
-      setOpenDropdowns(openDropdowns.filter((item) => item !== index));
-    } else {
-      // Dropdown fermé, l'ouvrir
-      setOpenDropdowns([...openDropdowns, index]);
-    }
-  };
-
   const dropdowns = [
     {
       title: 'Fiabilité',
@@ -44,6 +46,19 @@ const About: React.FC = () => {
     },
   ];
 
+  const [openDropdowns, setOpenDropdowns] = useState<number[]>([]); // Tableau d'indices des dropdowns ouverts
+
+  //Si l'index est déja présent dans le tableau, le retirer, sinon l'ajouter, si il est présent, la div avec le content est affiché
+  const toggleDropdown = (index: number) => {
+    if (openDropdowns.includes(index)) {
+      // Dropdown déjà ouvert, le fermer
+      setOpenDropdowns(openDropdowns.filter((item) => item !== index));
+    } else {
+      // Dropdown fermé, l'ouvrir. Si l'index n'est pas dans le tableau, on le rajoute en décomposant le tableau actuel puis en ajoutant l'index à la fin
+      setOpenDropdowns([...openDropdowns, index]);
+    }
+  };
+
   return (
     <div className="about">
       <div className="about__div-one">
@@ -51,19 +66,17 @@ const About: React.FC = () => {
       </div>
 
       <div className="about__collapse">
-        {dropdowns.map((dropdown, index) => (
-          <div key={index} className="dropdown">
+        {dropdowns.map((dropdown, id) => (
+          <div key={id} className="dropdown">
             <div className="dropdown-header">
               <p>{dropdown.title}</p>
               <FontAwesomeIcon
-                icon={
-                  openDropdowns.includes(index) ? 'chevron-down' : 'chevron-up'
-                }
-                className="icon"
-                onClick={() => toggleDropdown(index)}
+                icon="chevron-up"
+                className={`icon ${openDropdowns.includes(id) ? 'open' : 'closed'}`}
+                onClick={() => toggleDropdown(id)}
               />
             </div>
-            {openDropdowns.includes(index) && (
+            {openDropdowns.includes(id) && ( // Si l'index en question est dans le tableau openDropdown, ajouter cette div
               <div className="dropdown-content">{dropdown.content}</div>
             )}
           </div>
