@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar as solidStar,
-  faStar as regularStar,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import data from '../data.json';
 import './ficheLogement.scss';
+import useDropdowns from '../assets/composants/useDropdowns';
 
 type FicheLogementParams = {
   id: string;
@@ -44,23 +40,23 @@ const FicheLogement: React.FC = () => {
     const stars = parseInt(rating);
     const totalStars = 5;
     const solidStars = stars;
-    const regularStars = totalStars - solidStars;
+    const greyStars = totalStars - solidStars;
 
     const starIcons = [];
 
     // Ajoute les étoiles solides
     for (let i = 0; i < solidStars; i++) {
       starIcons.push(
-        <FontAwesomeIcon key={i} icon={solidStar} className="star-icon solid" />
+        <FontAwesomeIcon key={i} icon="star" className="star-icon solid" />
       );
     }
 
     // Ajoute les étoiles régulières
-    for (let i = 0; i < regularStars; i++) {
+    for (let i = 0; i < greyStars; i++) {
       starIcons.push(
         <FontAwesomeIcon
           key={solidStars + i}
-          icon={farStar}
+          icon="star"
           className="star-icon regular"
         />
       );
@@ -68,6 +64,8 @@ const FicheLogement: React.FC = () => {
 
     return starIcons;
   };
+
+  const { openDropdowns, toggleDropdown } = useDropdowns(); // Utilisation du hook personnalisé
 
   return (
     <div className="fiche-logement">
@@ -128,7 +126,39 @@ const FicheLogement: React.FC = () => {
             </div>
           </div>
         </div>
-        <div></div>
+        <div id="dropdown">
+          <div className="dropdown" id="0">
+            <div className="dropdown-header">
+              <p>Description</p>
+              <FontAwesomeIcon
+                icon="chevron-up"
+                className={`icon ${openDropdowns.includes(0) ? 'open' : 'closed'}`}
+                onClick={() => toggleDropdown(0)}
+              />
+            </div>
+            {openDropdowns.includes(0) && ( // Si l'index en question est dans le tableau openDropdown, ajouter cette div
+              <div className="dropdown-content">{logement.description}</div>
+            )}
+          </div>
+
+          <div className="dropdown" id="1">
+            <div className="dropdown-header">
+              <p>Equipements</p>
+              <FontAwesomeIcon
+                icon="chevron-up"
+                className={`icon ${openDropdowns.includes(1) ? 'open' : 'closed'}`}
+                onClick={() => toggleDropdown(1)}
+              />
+            </div>
+            {openDropdowns.includes(1) && ( // Si l'index en question est dans le tableau openDropdown, ajouter cette div
+              <div className="dropdown-content">
+                {logement.equipments.map((equipment, index) => (
+                  <p key={index}>{equipment}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

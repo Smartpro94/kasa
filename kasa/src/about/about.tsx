@@ -11,6 +11,7 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import useDropdowns from '../assets/composants/useDropdowns';
 
 // Ajouter l'icône à la bibliothèque
 library.add(
@@ -46,18 +47,7 @@ const About: React.FC = () => {
     },
   ];
 
-  const [openDropdowns, setOpenDropdowns] = useState<number[]>([]); // Tableau d'indices des dropdowns ouverts
-
-  //Si l'index est déja présent dans le tableau, le retirer, sinon l'ajouter, si il est présent, la div avec le content est affiché
-  const toggleDropdown = (index: number) => {
-    if (openDropdowns.includes(index)) {
-      // Dropdown déjà ouvert, le fermer
-      setOpenDropdowns(openDropdowns.filter((item) => item !== index));
-    } else {
-      // Dropdown fermé, l'ouvrir. Si l'index n'est pas dans le tableau, on le rajoute en décomposant le tableau actuel puis en ajoutant l'index à la fin
-      setOpenDropdowns([...openDropdowns, index]);
-    }
-  };
+  const { openDropdowns, toggleDropdown } = useDropdowns(); // Utilisation du hook personnalisé
 
   return (
     <div className="about">
