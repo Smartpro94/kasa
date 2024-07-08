@@ -1,27 +1,8 @@
-import React, { useId, useState } from 'react';
 import './about.scss';
-import background from '../assets/about-image.png';
+import background from '../assets/images/about-image.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faChevronUp,
-  faChevronDown,
-  faChevronLeft,
-  faChevronRight,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
-import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import useDropdowns from '../assets/composants/useDropdowns';
-
-// Ajouter l'icône à la bibliothèque
-library.add(
-  faChevronUp,
-  faChevronDown,
-  faChevronLeft,
-  faChevronRight,
-  faStar,
-  regularStar
-);
+import '../assets/composants/fontAwesome';
 
 const About: React.FC = () => {
   const dropdowns = [

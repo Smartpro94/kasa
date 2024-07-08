@@ -2,8 +2,8 @@
 
 import React, { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo_footer from '../assets/logo_footer.png';
-import Logo_header from '../assets/logo_header.png';
+import Logo_footer from '../assets/images/logo_footer.png';
+import Logo_header from '../assets/images/logo_header.png';
 import './layout.scss';
 
 interface LayoutProps {

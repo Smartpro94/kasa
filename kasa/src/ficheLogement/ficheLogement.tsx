@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import data from '../data.json';
 import './ficheLogement.scss';
 import useDropdowns from '../assets/composants/useDropdowns';
+import useCarousel from '../assets/composants/useCarousel';
 
 type FicheLogementParams = {
   id: string;
@@ -13,27 +14,17 @@ const FicheLogement: React.FC = () => {
   const { id } = useParams<FicheLogementParams>(); // Extrait l'ID du logement cliqué
   const logement = data.find((logement) => logement.id === id); // Trouve dans le fichier data l'objet qui a le même id que l'id extrait
 
-  // État local pour suivre l'index de l'image courante
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   if (!logement) {
     return <div>Logement non trouvé</div>;
   }
 
-  // Fonction pour passer à l'image suivante
-  const nextImage = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex + 1) % logement.pictures.length
-    );
-  };
+  // Utilisation du hook personnalisé pour le carousel
+  const { currentImageIndex, nextImage, prevImage } = useCarousel(
+    logement.pictures.length
+  );
 
-  // Fonction pour passer à l'image précédente
-  const prevImage = () => {
-    setCurrentImageIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + logement.pictures.length) % logement.pictures.length
-    );
-  };
+  // Utilisation du hook personnalisé pour le dropdown
+  const { openDropdowns, toggleDropdown } = useDropdowns();
 
   // Fonction pour générer les étoiles en fonction du rating
   const renderStars = (rating: string) => {
@@ -64,8 +55,6 @@ const FicheLogement: React.FC = () => {
 
     return starIcons;
   };
-
-  const { openDropdowns, toggleDropdown } = useDropdowns(); // Utilisation du hook personnalisé
 
   return (
     <div className="fiche-logement">

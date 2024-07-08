@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './home.scss';
-import background from '../assets/image_accueil.png';
+import background from '../assets/images/image_accueil.png';
 import data from '../data.json';
 
 type CardData = {
