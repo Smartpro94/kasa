@@ -6,6 +6,8 @@ import ErrorPage from './errorPage/errorPage';
 import About from './about/about';
 import Layout from './layout/layout';
 
+//npm create vite@latest my-react-app --template react-ts
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -14,7 +16,6 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/fiche-logement/:id" element={<FicheLogement />} />
-          {/*Route dynamique*/}
           <Route path="*" element={<ErrorPage />} />
           {/* Route par défaut en cas de chemin inconnu */}
         </Routes>

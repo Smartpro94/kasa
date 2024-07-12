@@ -5,6 +5,7 @@ const useDropdowns = () => {
 
   const toggleDropdown = (index: number) => {
     if (openDropdowns.includes(index)) {
+      // Si l'index en question est dans le tableau openDropdown, retirer cet index, sinon l'ajouter
       setOpenDropdowns(openDropdowns.filter((item) => item !== index));
     } else {
       setOpenDropdowns([...openDropdowns, index]);
