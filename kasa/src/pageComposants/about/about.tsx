@@ -1,8 +1,6 @@
 import './about.scss';
-import background from '../assets/images/about-image.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useDropdowns from '../assets/composants/useDropdowns';
-import '../assets/composants/fontAwesome';
+import background from '../../assets/images/about-image.png';
+import Dropdown from '../../composants/dropdown/dropdown';
 
 const About: React.FC = () => {
   const dropdowns = [
@@ -28,8 +26,6 @@ const About: React.FC = () => {
     },
   ];
 
-  const { openDropdowns, toggleDropdown } = useDropdowns(); // Utilisation du hook personnalisé
-
   return (
     <div className="about">
       <div className="about__div-one">
@@ -38,19 +34,9 @@ const About: React.FC = () => {
 
       <div className="about__collapse">
         {dropdowns.map((dropdown, id) => (
-          <div key={id} className="dropdown">
-            <div className="dropdown-header">
-              <p>{dropdown.title}</p>
-              <FontAwesomeIcon
-                icon="chevron-up"
-                className={`icon ${openDropdowns.includes(id) ? 'open' : 'closed'}`}
-                onClick={() => toggleDropdown(id)}
-              />
-            </div>
-            {openDropdowns.includes(id) && ( // Si l'index en question est dans le tableau openDropdown, ajouter cette div
-              <div className="dropdown-content">{dropdown.content}</div>
-            )}
-          </div>
+          <Dropdown key={id} title={dropdown.title}>
+            {dropdown.content}
+          </Dropdown>
         ))}
       </div>
     </div>

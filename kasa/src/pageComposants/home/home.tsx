@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './home.scss';
-import background from '../assets/images/image_accueil.png';
-import data from '../data.json';
+import background from '../../assets/images/image_accueil.png';
+import data from '../../data.json';
 
 type CardData = {
   id: string;
@@ -33,7 +33,6 @@ const Home: React.FC = () => {
             className="link"
           >
             <div
-              key={card.id}
               className="card"
               style={{ backgroundImage: `url(${card.cover})` }}
             >

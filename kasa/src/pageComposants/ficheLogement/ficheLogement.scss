@@ -3,56 +3,6 @@ $red: #ff6060;
 .fiche-logement {
   margin: 15px 100px 0px 100px;
 
-  .carousel {
-    position: relative;
-    height: 415px;
-
-    &__image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 25px;
-    }
-
-    &__button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      cursor: pointer;
-
-      .icon {
-        width: 46px;
-        height: 79px;
-      }
-
-      &--prev {
-        left: 10px;
-      }
-
-      &--next {
-        right: 10px;
-      }
-    }
-
-    &__counter {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: none;
-      color: white;
-      padding: 0.5rem;
-      border-radius: 3px;
-      font-size: 18px;
-      font-weight: 500;
-    }
-  }
-
   .logement-details {
     display: flex;
     flex-direction: column;
@@ -85,6 +35,7 @@ $red: #ff6060;
 
         .host-tag {
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
           .tag {
             margin-top: 13px;
@@ -147,64 +98,6 @@ $red: #ff6060;
       width: 100%;
       margin-top: 30px;
       gap: 76px;
-
-      .dropdown {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        background-color: #ff6060;
-        color: white;
-        border-radius: 5px;
-
-        .dropdown-header {
-          height: 52px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 15px;
-          box-sizing: border-box;
-
-          p {
-            font-size: 18px;
-            font-weight: 700;
-          }
-
-          .icon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            padding-top: 5px;
-            transition: transform 0.3s ease;
-
-            &.open {
-              transform: rotate(
-                -180deg
-              ); // Rotation de 0 degrés lorsque le dropdown est ouvert (chevron-down)
-            }
-
-            &.closed {
-              transform: rotate(
-                0deg
-              ); // Rotation de -90 degrés lorsque le dropdown est fermé (chevron-up)
-            }
-          }
-        }
-
-        .dropdown-content {
-          display: flex;
-          flex-direction: column;
-          background-color: white;
-          color: #333;
-          border-radius: 0 0 5px 5px;
-          gap: 5px;
-          padding: 25px;
-
-          p {
-            margin: 0;
-          }
-        }
-      }
     }
   }
 }
@@ -212,26 +105,6 @@ $red: #ff6060;
 @media (max-width: 1024px) {
   .fiche-logement {
     margin: 12px 18px 0px 18px;
-
-    .carousel {
-      height: 330px;
-
-      &__image {
-        border-radius: 15px;
-      }
-
-      &__button {
-        padding: 0;
-        .icon {
-          width: 53px;
-          height: 60px;
-        }
-      }
-
-      &__counter {
-        font-size: 16px;
-      }
-    }
 
     .logement-details {
       margin-top: 15px;
@@ -286,24 +159,6 @@ $red: #ff6060;
       #dropdown {
         gap: 20px;
         margin-top: 20px;
-        .dropdown {
-          .dropdown-header {
-            height: 40px;
-
-            p {
-              font-size: 15px;
-            }
-
-            .icon {
-              width: 25px;
-              height: 25px;
-            }
-          }
-          .dropdown-content {
-            padding: 12px;
-            font-size: 14px;
-          }
-        }
       }
     }
   }
@@ -311,24 +166,6 @@ $red: #ff6060;
 @media (max-width: 789px) {
   .fiche-logement {
     margin: 20px 18px 0px 18px;
-    .carousel {
-      height: 255px;
-
-      &__image {
-        border-radius: 10px;
-      }
-
-      &__button {
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-      }
-
-      &__counter {
-        display: none;
-      }
-    }
     .logement-details {
       margin-top: 15px;
       margin-bottom: 30px;
@@ -350,6 +187,7 @@ $red: #ff6060;
             .tag {
               font-size: 9px;
               padding: 4px 22px 4px 22px;
+              border-radius: 5px;
             }
           }
         }
@@ -388,23 +226,6 @@ $red: #ff6060;
       #dropdown {
         flex-direction: column;
         margin-top: 0;
-        .dropdown {
-          .dropdown-header {
-            height: 33px;
-
-            p {
-              font-size: 13px;
-            }
-
-            .icon {
-              width: 20px;
-              height: 20px;
-            }
-          }
-          .dropdown-content {
-            font-size: 11px;
-          }
-        }
       }
     }
   }

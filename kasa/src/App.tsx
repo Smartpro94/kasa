@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './home/home';
-import FicheLogement from './ficheLogement/ficheLogement';
-import ErrorPage from './errorPage/errorPage';
-import About from './about/about';
-import Layout from './layout/layout';
+import Home from './pageComposants/home/home';
+import FicheLogement from './pageComposants/ficheLogement/ficheLogement';
+import ErrorPage from './pageComposants/errorPage/errorPage';
+import About from './pageComposants/about/about';
+import Layout from './pageComposants/layout/layout';
 
 //npm create vite@latest my-react-app --template react-ts
 
